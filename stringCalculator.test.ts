@@ -34,4 +34,15 @@ describe('string calculator', () => {
     });
   });
 
+  describe('supporting a different default delimiter', () => {
+    it('should add numbers when a different default delimiter is provided', () => {
+      expect(add("//;\n1;2\n3;4")).toBe(10);
+    });
+
+    it('should handle edge cases', () => {
+      expect(add("//;\n")).toBe(0);
+      expect(add("//;\n;1")).toBe(1);
+    });
+  });
+
 });
