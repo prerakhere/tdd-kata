@@ -15,7 +15,9 @@ export default function add(numbersStr: string) {
       if (num < 0) negativeNumsList.push(num);
       hasNegativeNumbers = true;
     }
-    else sumOfNums += num;
+    else {
+      if (num <= 1000) sumOfNums += num;
+    }
   }
   if (hasNegativeNumbers) throw new Error(`negatives not allowed ${negativeNumsList.join(',')}`);
   return sumOfNums;
@@ -28,4 +30,5 @@ export default function add(numbersStr: string) {
  3. "1,2\n3,4"
  4: "//;\n1;2\n3;4"
  5: "//;\n1;-2/n-3;4"
+ 6: "//;\n1;2;3\n4;1001\n2000"
  */
