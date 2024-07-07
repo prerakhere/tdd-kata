@@ -1,0 +1,1 @@
+Solved a [kata](https://osherove.com/tdd-kata-1/), the TDD way.
