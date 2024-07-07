@@ -45,4 +45,10 @@ describe('string calculator', () => {
     });
   });
 
+  describe('handling negative numbers', () => {
+    it('should throw an error when negative numbers are encountered', () => {
+      expect(() => add('//;\n1;-2;-3\n4')).toThrow('negatives not allowed -2,-3');
+    });
+  });
+
 });
