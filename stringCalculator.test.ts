@@ -23,4 +23,15 @@ describe('string calculator', () => {
     });
   });
 
+  describe('handling newline character', () => {
+    it('should add numbers in the string treating newline also as a delimiter', () => {
+      expect(add("1,2\n3,4")).toBe(10);
+    });
+
+    it('should handle edge cases', () => {
+      expect(add("\n")).toBe(0);
+      expect(add("\n,\n,,")).toBe(0);
+    });
+  });
+
 });
