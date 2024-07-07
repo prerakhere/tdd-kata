@@ -12,4 +12,15 @@ describe('string calculator', () => {
     });
   });
 
+  describe('addition of indefinite numbers in the string', () => {
+    it('should add any number of numbers in the string', () => {
+      expect(add("1,2,3,4")).toBe(10);
+    });
+
+    it('should handle edge cases', () => {
+      expect(add(",")).toBe(0);
+      expect(add("1,,2,")).toBe(3);
+    });
+  });
+
 });
