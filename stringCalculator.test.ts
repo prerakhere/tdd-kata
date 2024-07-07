@@ -57,4 +57,10 @@ describe('string calculator', () => {
     });
   });
 
+  describe('supporting a delimiter of any length', () => {
+    it('should allow a delimiter of any length', () => {
+      expect(add('//[***]\n1***2\n3***1001***4')).toBe(10);
+    });
+  });
+
 });

@@ -6,7 +6,12 @@ export default function add(numbersStr: string) {
     hasNegativeNumbers = false,
     negativeNumsList: number[] = [];
   if (numbersStr.substring(0, 2) === "//") {
-    delimiter = numbersStr[2];
+    if (numbersStr[2] === '[') {
+      let delimiterEndIndex = numbersStr.indexOf(']');
+      delimiter = numbersStr.substring(3, delimiterEndIndex);
+      nums = numbersStr.substring(delimiterEndIndex + 2).split('\n').join(delimiter).split(delimiter).map(Number);
+    }
+    else delimiter = numbersStr[2];
     nums = numbersStr.substring(4).split('\n').join(delimiter).split(delimiter).map(Number);
   }
   else nums = numbersStr.split('\n').join(delimiter).split(delimiter).map(Number);
@@ -31,4 +36,5 @@ export default function add(numbersStr: string) {
  4: "//;\n1;2\n3;4"
  5: "//;\n1;-2/n-3;4"
  6: "//;\n1;2;3\n4;1001\n2000"
+ 7: "//[***]\n1***2\n3***1001***4"
  */
