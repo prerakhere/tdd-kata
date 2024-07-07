@@ -63,4 +63,14 @@ describe('string calculator', () => {
     });
   });
 
+  describe('support for multiple delimiters', () => {
+    it('should allow multiple single character delimiters', () => {
+      expect(add('//[*][%]\n1*2\n3%1001%4')).toBe(10);
+    });
+
+    it('should allow multiple multi-character delimiters', () => {
+      expect(add('//[***][%%]\n1***2\n3%%1001%%4')).toBe(10);
+    });
+  });
+
 });

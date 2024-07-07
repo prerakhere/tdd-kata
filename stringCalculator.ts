@@ -7,12 +7,20 @@ export default function add(numbersStr: string) {
     negativeNumsList: number[] = [];
   if (numbersStr.substring(0, 2) === "//") {
     if (numbersStr[2] === '[') {
-      let delimiterEndIndex = numbersStr.indexOf(']');
-      delimiter = numbersStr.substring(3, delimiterEndIndex);
-      nums = numbersStr.substring(delimiterEndIndex + 2).split('\n').join(delimiter).split(delimiter).map(Number);
+
+      let delimitersEndIndex = numbersStr.indexOf('\n') - 1;
+      let delimiterList = numbersStr.substring(3, delimitersEndIndex).split(']['); // eliminating first opening and last closing square brackets
+
+      let tempNumsStr = numbersStr.substring(delimitersEndIndex + 2).split('\n');
+      for (let delimiter of delimiterList) {
+        tempNumsStr = tempNumsStr.join(delimiter).split(delimiter);
+      }
+      nums = tempNumsStr.map(Number);
     }
-    else delimiter = numbersStr[2];
-    nums = numbersStr.substring(4).split('\n').join(delimiter).split(delimiter).map(Number);
+    else {
+      delimiter = numbersStr[2];
+      nums = numbersStr.substring(4).split('\n').join(delimiter).split(delimiter).map(Number);
+    }
   }
   else nums = numbersStr.split('\n').join(delimiter).split(delimiter).map(Number);
   for (let num of nums) {
@@ -37,4 +45,6 @@ export default function add(numbersStr: string) {
  5: "//;\n1;-2/n-3;4"
  6: "//;\n1;2;3\n4;1001\n2000"
  7: "//[***]\n1***2\n3***1001***4"
+ 8: "//[*][%]\n1*2\n3%1001%4"
+ 9: "//[***][%%]\n1***2\n3%%1001%%4"
  */
